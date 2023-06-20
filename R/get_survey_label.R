@@ -10,7 +10,7 @@ get_survey_label <- function(survey, col){
 
   col_name <- rlang::as_name(rlang::enquo(col))
 
-  to_return <- dplyr::filter(survey, rlang::.data$name == col_name)
+  to_return <- dplyr::filter(survey, !!rlang::sym("name") == col_name)
   to_return <- dplyr::pull(to_return, "label")
 
   if (length(to_return) == 0) {

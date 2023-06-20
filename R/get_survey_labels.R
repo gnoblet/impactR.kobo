@@ -11,7 +11,7 @@ get_survey_labels <- function(survey, ..., output_df = TRUE) {
 
   col_names <- purrr::map_chr(rlang::enquos(...), rlang::as_name)
 
-  to_return <- dplyr::filter(survey, rlang::.data$name %in% col_names)
+  to_return <- dplyr::filter(survey, !!rlang::sym("name") %in% col_names)
   to_return <- dplyr::select(to_return, "name", "label")
 
   if (nrow(to_return) == 0) {
