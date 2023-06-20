@@ -14,7 +14,7 @@ get_survey_choices <- function(survey, choices, col, conc = TRUE, label = FALSE,
 
   col_name <- rlang::as_name(rlang::enquo(col))
 
-  to_return <- dplyr::filter(survey, .data$name == col_name)
+  to_return <- dplyr::filter(survey, rlang::.data$name == col_name)
   to_return <- dplyr::pull(to_return, "list_name")
 
   if (length(to_return) == 0) {
@@ -67,7 +67,7 @@ get_survey_choices <- function(survey, choices, col, conc = TRUE, label = FALSE,
     }
   }
 
-  to_return <- dplyr::filter(choices, .data$list_name == to_return)
+  to_return <- dplyr::filter(choices, rlang::.data$list_name == to_return)
 
   if (!label) {
     to_return <- dplyr::pull(to_return, "name")

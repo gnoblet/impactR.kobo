@@ -29,8 +29,6 @@ get_other_from_df.data.frame <- function(df, other){
 
 #' @export
 #'
-#' @inheritParams get_other_from_df
-#'
 #' @param survey Some survey sheet, with a split 'type' column, e.g. with `split_survey(survey, type)`. It must have columns 'list_name', 'type', 'label', and 'name'.
 #'
 #' @rdname get_other_from_df
@@ -45,8 +43,8 @@ get_other_from_survey.data.frame <- function(survey, other) {
 
   # Filter rows of type "text" and starting with "other" pattern
   filtered <- dplyr::filter(survey,
-                            .data$type == "text" ,
-                            stringr::str_starts(.data$name, other))
+                            rlang::.data$type == "text" ,
+                            stringr::str_starts(rlang::.data$name, other))
 
   # Pull names
   other_parent_cols <- dplyr::pull(filtered, "name")

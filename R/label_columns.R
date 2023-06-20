@@ -3,7 +3,6 @@
 #' @param df Some Kobo data.
 #' @param survey Some survey sheet, with a split 'type' column, e.g. with `split_survey(type)`. It must have columns 'list_name', 'type', 'label', and 'name'.
 #' @param name_as_label Default to TRUE. Should the variable name be used as the label if label is missing?
-#' @param as_attribute Default to FALSE. Should the names be as attributes or column names?
 #'
 #' @return Labeled columns as attributes.
 #'
@@ -15,10 +14,10 @@ label_columns <- function(df, survey, name_as_label = TRUE){
   survey <- tidyr::drop_na(survey, "name")
 
   if (name_as_label) {
-    survey <-  dplyr::mutate(survey, label = ifelse(is.na(.data$label), .data$name, .data$label))
+    survey <-  dplyr::mutate(survey, label = ifelse(is.na(rlang::.data$label), rlang::.data$name, rlang::.data$label))
   }
 
-  added_cols <- subvec_not_in(colnames(data), survey$name)
+  added_cols <- subvec_not_in(colnames(df), survey$name)
 
   var_labels <- purrr::set_names(survey[["label"]], survey[["name"]])
 
