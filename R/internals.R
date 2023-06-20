@@ -42,7 +42,7 @@ abort_bad_argument <- function(arg1, must, not = NULL, arg2 = NULL, same = NULL)
 #' @return A stop statement
 if_not_in_stop <- function(.tbl, cols, df, arg = NULL){
 
-  missing_cols <- subvec_not_in(cols, colnames(.tbl))
+  missing_cols <- impactR.utils::subvec_not_in(cols, colnames(.tbl))
 
   if (is.null(arg)) {
     if (length(missing_cols) >= 2) {
@@ -97,7 +97,7 @@ if_vec_not_in_stop <- function(vec, cols, vec_name, arg = NULL){
           paste(
             msg,
             paste(
-              subvec_not_in(cols, vec),
+              impactR.utils::subvec_not_in(cols, vec),
               collapse = ", ")
           )
       )
@@ -144,31 +144,6 @@ are_values_in_set <- function(df, col, set){
   return(TRUE)
 }
 
-
-
-#' @title Subvec in
-#'
-#' @param vector A vector to subset
-#' @param set A set-vector
-#'
-#' @return A subset of a list or a vector
-#'
-#' @export
-subvec_in <- function(vector, set){
-  vector[vector %in% set]
-}
-
-#' @title Subvec not in
-#'
-#' @param vector A vector to subset
-#' @param set A set-vector
-#'
-#' @return A subset of vector not in set
-#'
-#' @export
-subvec_not_in <- function(vector, set){
-  vector[!(vector %in% set)]
-}
 
 #' Check if survey is minimally well-defined
 #'

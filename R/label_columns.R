@@ -17,7 +17,7 @@ label_columns <- function(df, survey, name_as_label = TRUE){
     survey <-  dplyr::mutate(survey, label = ifelse(is.na(rlang::.data$label), rlang::.data$name, rlang::.data$label))
   }
 
-  added_cols <- subvec_not_in(colnames(df), survey$name)
+  added_cols <- impactR.utils::subvec_not_in(colnames(df), survey$name)
 
   var_labels <- purrr::set_names(survey[["label"]], survey[["name"]])
 

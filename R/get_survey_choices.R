@@ -53,7 +53,7 @@ get_survey_choices <- function(survey, choices, col, conc = TRUE, label = FALSE,
     }
   }
 
-  if (length(subvec_in(to_return, choices[["list_name"]])) == 0) {
+  if (length(impactR.utils::subvec_in(to_return, choices[["list_name"]])) == 0) {
 
     rlang::warn(glue::glue("There is no corresponding list_name in choices for col: '{col_name}'.", "An empty vector or an empty tibble is returned.", .sep = "\n"))
 

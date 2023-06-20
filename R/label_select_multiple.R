@@ -9,6 +9,8 @@
 #' @param col The select_one column to label.
 #' @param return_df NULL returns the updated data frame; "id_col" returns a data frame with only col and id_col; and, "vector" returns.
 #'
+#' @importFrom rlang `:=`
+#'
 #' @return A labeled data frame, sub-data frame or vector for `label_select_multiple()`; a labeled data frame for `label_all_select_multiple()`.
 #'
 #' @export
@@ -54,7 +56,7 @@ label_select_multiple <- function(df, survey, choices, id_col, col, return_df = 
 
       recoded <- dplyr::ungroup(dplyr::distinct(recoded))
 
-      recoded <- impactR::recode_values(recoded, "NA", NA, {{ col }})
+      recoded <- impactR.utils::recode_values(recoded, "NA", NA, {{ col }})
     }
   }
 
@@ -84,9 +86,9 @@ label_all_select_multiple <- function(df, survey, choices, id_col){
     \(x) label_select_multiple(df, survey, choices, {{ id_col }}, {{ x }}, return_df = "id_col")
   )
 
-  recoded <- impactR::left_joints(recoded, {{ id_col }})
+  recoded <- impactR.utils::left_joints(recoded, {{ id_col }})
 
-  df <- impactR::diff_tibbles(df, recoded, {{ id_col }})
+  df <- impactR.utils::df_diff(df, recoded, {{ id_col }})
 
   recoded <- dplyr::left_join(df, recoded, by = id_col_name)
   recoded <- dplyr::relocate(recoded, dplyr::all_of(col_names))

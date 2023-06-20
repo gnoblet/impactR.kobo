@@ -1,5 +1,5 @@
 Package: impactR.kobo
-Title: Some utils for working with Kobo data
+Title: Some utils for working with Kobo tools
 Version: 0.0.0.9000
 Authors@R: 
     person("Guillaume", "Noblet", , "gnoblet@zaclys.net", role = c("aut", "cre"))
@@ -16,9 +16,10 @@ Imports:
     stringr,
     purrr,
     tibble,
-    impactR
+    impactR.utils
 Remotes:
-  gnoblet/impactR
+  gnoblet/impactR.utils
+  gnoblet/impactR.kobo
 Depends: 
     R (>= 2.10)
 LazyData: true
