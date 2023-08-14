@@ -84,3 +84,9 @@ get_survey_calculate <- function(survey) {
 get_survey_integer <- function(survey) {
   get_survey_type(survey, "integer")
 }
+
+#' @export
+#' @rdname get_survey_type
+get_survey_decimal <- function(survey) {
+  get_survey_type(survey, "decimal")
+}
