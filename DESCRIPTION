@@ -19,7 +19,6 @@ Imports:
     impactR.utils
 Remotes:
   gnoblet/impactR.utils
-  gnoblet/impactR.kobo
 Depends: 
     R (>= 2.10)
 LazyData: true
