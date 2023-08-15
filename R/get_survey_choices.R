@@ -46,7 +46,8 @@ get_survey_choices <- function(survey, choices, col, conc = TRUE, label = FALSE,
     if (label) {
       return(tibble::tibble(
         name = character(),
-        label = character()
+        label = character(),
+        col = character()
       ))
     } else if (!label) {
       return(character())
@@ -60,7 +61,8 @@ get_survey_choices <- function(survey, choices, col, conc = TRUE, label = FALSE,
     if (label) {
       return(tibble::tibble(
         name = character(),
-        label = character()
+        label = character(),
+        col = character()
       ))
     } else if (!label) {
       return(character())
@@ -75,8 +77,8 @@ get_survey_choices <- function(survey, choices, col, conc = TRUE, label = FALSE,
     if (rlang::is_true(conc)) {
       to_return <- stringr::str_c(col_name, to_return, sep = sep)
     }} else {
-      to_return <- to_return |>
-        dplyr::select("name", "label")
+      to_return <- dplyr::select(to_return, "name", "label")
+      to_return <- dplyr::mutate(to_return, "col" := col_name)
     }
 
 
