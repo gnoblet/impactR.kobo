@@ -6,6 +6,7 @@
 \alias{get_survey_select_multiple}
 \alias{get_survey_calculate}
 \alias{get_survey_integer}
+\alias{get_survey_decimal}
 \title{Get questions by type from the survey sheet}
 \usage{
 get_survey_type(survey, question_type)
@@ -17,6 +18,8 @@ get_survey_select_multiple(survey)
 get_survey_calculate(survey)
 
 get_survey_integer(survey)
+
+get_survey_decimal(survey)
 }
 \arguments{
 \item{survey}{The survey sheet from Kobo (with column "type" split). See \code{split_survey()}}

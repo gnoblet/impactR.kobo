@@ -14,10 +14,10 @@ label_columns <- function(df, survey, name_as_label = TRUE){
   survey <- tidyr::drop_na(survey, "name")
 
   if (name_as_label) {
-    survey <-  dplyr::mutate(survey, label = ifelse(is.na(rlang::.data$label), rlang::.data$name, rlang::.data$label))
+    survey <-  dplyr::mutate(survey, label = ifelse(is.na(!!rlang::sym("label")), !!rlang::sym("name"), !!rlang::sym("label")))
   }
 
-  added_cols <- impactR.utils::subvec_not_in(colnames(df), survey$name)
+  added_cols <- impactR.utils::subvec_not_in(colnames(df), survey[["name"]])
 
   var_labels <- purrr::set_names(survey[["label"]], survey[["name"]])
 
