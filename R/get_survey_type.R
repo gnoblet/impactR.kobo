@@ -55,7 +55,7 @@ get_survey_type.data.frame <- function(survey, question_type){
   got <- dplyr::pull(got, "name")
 
   # Warning if yielding zero row
-  if (length(got) == 0) rlang::warn("The output is empty.")
+  if (length(got) == 0) rlang::warn(paste0("There is no question in the survey sheet that is of type ", question_type, "."))
 
   return(got)
 }
